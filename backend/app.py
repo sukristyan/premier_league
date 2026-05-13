@@ -1,10 +1,23 @@
-from flask import Flask, jsonify, request
+import os
+
+from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 import requests
 
-app = Flask(__name__)
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    static_folder=os.path.join(_BASE_DIR, "static"),
+    template_folder=os.path.join(_BASE_DIR, "templates"),
+)
 
 CORS(app)
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 
 API_KEY = "4da351778ae44a7fb74bcfcb0550db61"
 BASE_URL = "http://api.football-data.org/v4/competitions/PL"
@@ -237,5 +250,5 @@ def get_squad(team_id):
         }), 500
 
 if __name__ == '__main__':
-    print("[Info] Backend server is running successfully on [http://127.0.0.1:5000](http://127.0.0.1:5000)")
+    print("[Info] App running at http://127.0.0.1:5000/ (API + frontend)")
     app.run(debug=True)
