@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/pl-logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='pl-logo.svg') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Premier League 2025/26</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   </head>
   <body>
     <div id="app">
@@ -127,8 +127,9 @@
                 <div class="col-form">Form</div>
               </div>
               <div id="standingsBody" class="table-body">
-                <div class="skeleton-rows">
-                  ${Array(20).fill('<div class="skeleton-row"><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-40"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-8"></div><div class="skeleton-cell w-12"></div></div>').join('')}
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                  <p>Loading standings...</p>
                 </div>
               </div>
             </div>
@@ -237,6 +238,6 @@
       </div>
     </div>
 
-    <script type="module" src="/src/main.js"></script>
+    <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>
